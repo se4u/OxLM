@@ -6,6 +6,9 @@ namespace oxlm {
 
 class SourceFactoredWeights : public FactoredWeights {
  public:
+    Real* data;
+  int size;
+
   SourceFactoredWeights();
 
   SourceFactoredWeights(
@@ -117,10 +120,8 @@ class SourceFactoredWeights : public FactoredWeights {
   ContextTransformsType SC;
   WordVectorsType SQ;
   WeightsType SW;
-
+  
  private:
-  Real* data;
-  int size;
   vector<Mutex> mutexesSQ;
   vector<Mutex> mutexesSC;
 };

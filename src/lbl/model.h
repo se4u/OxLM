@@ -61,7 +61,11 @@ class Model {
   Real getUnnormalizedScore(int word_id, const vector<int>& context) const;
 
   MatrixReal getWordVectors() const;
+  
+  WeightsType getW() const;
 
+  Real* getdata() const;
+  
   void save() const;
 
   void load(const string& filename);
@@ -70,7 +74,7 @@ class Model {
 
   bool operator==(
       const Model<GlobalWeights, MinibatchWeights, Metadata>& other) const;
-
+  boost::shared_ptr<GlobalWeights> weights;
  private:
   void evaluate(
       const boost::shared_ptr<Corpus>& corpus, const Time& iteration_start,
@@ -80,7 +84,7 @@ class Model {
   boost::shared_ptr<ModelData> config;
   boost::shared_ptr<Vocabulary> vocab;
   boost::shared_ptr<Metadata> metadata;
-  boost::shared_ptr<GlobalWeights> weights;
+
 };
 
 class LM : public Model<Weights, Weights, Metadata> {

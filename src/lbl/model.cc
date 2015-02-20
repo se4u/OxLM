@@ -48,6 +48,16 @@ MatrixReal Model<GlobalWeights, MinibatchWeights, Metadata>::getWordVectors() co
 }
 
 template<class GlobalWeights, class MinibatchWeights, class Metadata>
+WeightsType Model<GlobalWeights, MinibatchWeights, Metadata>::getW() const {
+  return weights->W;
+}
+
+template<class GlobalWeights, class MinibatchWeights, class Metadata>
+Real* Model<GlobalWeights, MinibatchWeights, Metadata>::getdata() const {
+  return weights->data;
+}
+  
+template<class GlobalWeights, class MinibatchWeights, class Metadata>
 void Model<GlobalWeights, MinibatchWeights, Metadata>::learn() {
   // Initialize the vocabulary now, if it hasn't been initialized when the
   // vocabulary was partitioned in classes.

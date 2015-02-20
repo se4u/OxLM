@@ -245,10 +245,10 @@ class Weights {
   WeightsType           W;
 
   mutable ContextCache normalizerCache;
-
- protected:
   int size;
   Real* data;
+  
+ protected:
   vector<Mutex> mutexesC;
   vector<Mutex> mutexesQ;
   vector<Mutex> mutexesR;

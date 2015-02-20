@@ -13,6 +13,9 @@ namespace oxlm {
 
 class FactoredWeights : public Weights {
  public:
+      int size;
+  Real* data;
+
   FactoredWeights();
 
   FactoredWeights(
@@ -189,10 +192,8 @@ class FactoredWeights : public Weights {
   WeightsType     FW;
 
   mutable ContextCache classNormalizerCache;
-
+  
  private:
-  int size;
-  Real* data;
   vector<Mutex> mutexes;
 
   mutable boost::thread_specific_ptr<ClassDistribution> classDist;
