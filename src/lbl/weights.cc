@@ -46,7 +46,7 @@ Weights::Weights(
     W(i) = gaussian(gen);
   }
   for (int i = Q_size + R_size; i < Q_size + R_size + C_size * context_width; ++i) {
-    W(i) = 1/context_width;
+      W(i) = 1.0/context_width;
   }
   // Initialize bias with unigram probabilities.
   VectorReal counts = VectorReal::Zero(config->vocab_size);
