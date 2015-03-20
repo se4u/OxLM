@@ -34,10 +34,20 @@ Weights::Weights(
   // Initialize model weights randomly.
   mt19937 gen(1);
   normal_distribution<Real> gaussian(0, 0.1);
+  int num_context_words = config->vocab_size;
+  int num_output_words = config->vocab_size;
+  int word_width = config->word_representation_size;
+  int context_width = config->ngram_order - 1;
+  int Q_size = word_width * num_context_words;
+  int R_size = word_width * num_output_words;
+  int C_size = config->diagonal_contexts ? word_width : -10000000;
+  
   for (int i = 0; i < size; ++i) {
     W(i) = gaussian(gen);
   }
-
+  for (int i = Q_size + R_size; i < Q_size + R_size + C_size * context_width; ++i) {
+    W(i) = 1/context_width;
+  }
   // Initialize bias with unigram probabilities.
   VectorReal counts = VectorReal::Zero(config->vocab_size);
   for (size_t i = 0; i < training_corpus->size(); ++i) {
@@ -504,10 +514,10 @@ void Weights::syncUpdate(
     R.col(word_id) += gradient->R.col(word_id);
   }
 
-  for (size_t i = 0; i < C.size(); ++i) {
-    lock_guard<mutex> lock(*mutexesC[i]);
-    C[i] += gradient->C[i];
-  }
+  // for (size_t i = 0; i < C.size(); ++i) {
+  //   lock_guard<mutex> lock(*mutexesC[i]);
+  //   C[i] += gradient->C[i];
+  // }
 
   for (size_t i = 0; i < H.size(); ++i) {
     lock_guard<mutex> lock(*mutexesH[i]);
