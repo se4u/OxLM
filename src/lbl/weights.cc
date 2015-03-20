@@ -2,7 +2,7 @@
 
 #include <iomanip>
 #include <random>
-
+#include <omp.h>
 #include <boost/make_shared.hpp>
 
 #include "lbl/context_processor.h"
@@ -651,6 +651,22 @@ void Weights::clearCache() {
 
 MatrixReal Weights::getWordVectors() const {
   return R;
+}
+
+VectorReal Weights::getWordBias() const{
+    return B;
+}
+
+ContextTransformsType Weights::getTransformationMatrix() const{
+    return C;
+}
+
+MatrixReal Weights::getWordContextVectors() const{
+    return Q;
+}
+
+WeightsType Weights::getW() const {
+    return W;
 }
 
 bool Weights::operator==(const Weights& other) const {
