@@ -17,7 +17,6 @@ class Vocabulary {
 
   bool contains(const string& word);
 
-  Dict dict;
  private:
   friend class boost::serialization::access;
 
@@ -26,6 +25,7 @@ class Vocabulary {
     ar & dict;
   }
 
+  Dict dict;
 };
 
 } // namespace oxlm

@@ -7,8 +7,6 @@
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 
-#include "lbl/context_cache.h"
-#include "lbl/minibatch_words.h"
 #include "lbl/factored_metadata.h"
 #include "lbl/factored_maxent_metadata.h"
 #include "lbl/factored_weights.h"
@@ -50,24 +48,8 @@ MatrixReal Model<GlobalWeights, MinibatchWeights, Metadata>::getWordVectors() co
 }
 
 template<class GlobalWeights, class MinibatchWeights, class Metadata>
-VectorReal Model<GlobalWeights, MinibatchWeights, Metadata>::getWordBias() const {
-  return weights->getWordBias();
-}
-
-template<class GlobalWeights, class MinibatchWeights, class Metadata>
-ContextTransformsType Model<GlobalWeights, MinibatchWeights, Metadata>::getTransformationMatrix() const {
-  return weights->getTransformationMatrix();
-}
-
-template<class GlobalWeights, class MinibatchWeights, class Metadata>
-MatrixReal Model<GlobalWeights, MinibatchWeights, Metadata>::getWordContextVectors() const {
-  return weights->getWordContextVectors();
-}
-
-
-template<class GlobalWeights, class MinibatchWeights, class Metadata>
 WeightsType Model<GlobalWeights, MinibatchWeights, Metadata>::getW() const {
-  return weights->getW();
+  return weights->W;
 }
 
 template<class GlobalWeights, class MinibatchWeights, class Metadata>

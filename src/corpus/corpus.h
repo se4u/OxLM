@@ -107,6 +107,7 @@ public:
         ar & words_;
         ar & d_;
     }
+private:
     Word b0_, sos_, eos_;
     WordId bad0_id_;
     std::vector<Word> words_;
