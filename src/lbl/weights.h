@@ -104,6 +104,10 @@ class Weights {
 
   MatrixReal getWordVectors() const;
 
+  VectorReal getWordBias() const;
+  ContextTransformsType getTransformationMatrix() const;
+  MatrixReal getWordContextVectors() const;
+  WeightsType getW() const;
   bool operator==(const Weights& other) const;
 
   virtual ~Weights();
@@ -236,14 +240,13 @@ class Weights {
   boost::shared_ptr<ModelData> config;
   boost::shared_ptr<Metadata> metadata;
 
+ public:
+  WeightsType           W;
   ContextTransformsType C;
   WordVectorsType       Q;
   WordVectorsType       R;
   WeightsType           B;
   HiddenLayers          H;
- public:
-  WeightsType           W;
-
   mutable ContextCache normalizerCache;
   int size;
   Real* data;

@@ -61,9 +61,11 @@ class Model {
   Real getUnnormalizedScore(int word_id, const vector<int>& context) const;
 
   MatrixReal getWordVectors() const;
+  VectorReal getWordBias() const;
+  ContextTransformsType getTransformationMatrix() const;
+  MatrixReal getWordContextVectors() const;
   
   WeightsType getW() const;
-
   Real* getdata() const;
   
   void save() const;
